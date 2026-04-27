@@ -46,7 +46,7 @@ export default function BookingPage() {
   useEffect(() => {
     const checkConfig = async () => {
       try {
-        const response = await axios.get('/api/payments/config');
+        const response = await axios.get('https://fixivobeckend.onrender.com/api/payments/config');
         setIsPaymentConfigured(response.data.configured);
       } catch (e) {
         setIsPaymentConfigured(false);
@@ -97,7 +97,7 @@ export default function BookingPage() {
       };
 
       console.log('Creating preliminary booking record...');
-      const response = await axios.post('/api/bookings/create', bookingPayload);
+      const response = await axios.post('https://fixivobeckend.onrender.com/api/bookings/create', bookingPayload);
       const booking = response.data;
       
       // Fix: Support both id and _id from server
@@ -112,7 +112,7 @@ export default function BookingPage() {
       let order;
       try {
         console.log('Creating Razorpay order for booking:', bookingId);
-        const orderResponse = await axios.post('/api/payments/create-order', {
+        const orderResponse = await axios.post('https://fixivobeckend.onrender.com/api/payments/create-order', {
           bookingId: bookingId,
           userId: user.uid
         }, { timeout: 10000 });
@@ -144,7 +144,7 @@ export default function BookingPage() {
           setLoading(true);
           try {
             console.log('Verifying payment signature...');
-            await axios.post('/api/payments/verify', {
+            await axios.post('https://fixivobeckend.onrender.com/api/payments/verify', {
               razorpay_order_id: response.razorpay_order_id,
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_signature: response.razorpay_signature,
