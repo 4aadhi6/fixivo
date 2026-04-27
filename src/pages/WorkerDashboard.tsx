@@ -322,7 +322,7 @@ export default function WorkerDashboard() {
     try {
       setActionLoading(jobId);
       // 1. Update status via Backend
-      await axios.post("/api/bookings/assign", {
+      await axios.post("https://fixivobeckend.onrender.com/api/bookings/assign", {
         bookingId: jobId,
         workerId: user!.uid,
       });
@@ -353,7 +353,7 @@ export default function WorkerDashboard() {
 
     try {
       // Use the backend API to verify OTP
-      await axios.post("/api/bookings/complete", {
+      await axios.post("https://fixivobeckend.onrender.com/api/bookings/complete", {
         bookingId: job.id,
         otpCode: otp,
         billDetails: {
@@ -1419,7 +1419,7 @@ export default function WorkerDashboard() {
                                           const fd = new FormData();
                                           fd.append("file", file);
                                           const res = await axios.post(
-                                            "/api/utils/upload",
+                                            "https://fixivobeckend.onrender.com/api/utils/upload",
                                             fd,
                                           );
                                           const url = res.data.url;
