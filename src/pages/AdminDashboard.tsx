@@ -225,7 +225,7 @@ export default function AdminDashboard() {
 
   const handleApproveWorker = async (workerId: string) => {
     try {
-      await axios.post("/api/admin/approve-worker", { workerId });
+      await axios.post("https://fixivobeckend.onrender.com/api/admin/approve-worker", { workerId });
       toast.success("Worker approved!");
     } catch (error) {
       toast.error("Approval failed");
@@ -245,7 +245,7 @@ export default function AdminDashboard() {
   const handleRequestCorrection = async (workerId: string, reason: string) => {
     if (!reason) return toast.error("Please specify the correction needed");
     try {
-      await axios.post("/api/admin/request-correction", { workerId, reason });
+      await axios.post("https://fixivobeckend.onrender.com/api/admin/request-correction", { workerId, reason });
       toast.success("Correction requested");
     } catch (error) {
       toast.error("Operation failed");
@@ -266,7 +266,7 @@ export default function AdminDashboard() {
 
     const loadingToast = toast.loading("Unverifying worker...");
     try {
-      await axios.post("http://localhost:3000/api/admin/unverify-worker", {
+      await axios.post("https://fixivobeckend.onrender.com/api/admin/unverify-worker", {
         workerId: unverifyModal.workerId,
         reason: unverifyModal.reason,
       });
@@ -762,7 +762,7 @@ export default function AdminDashboard() {
                                   "Force completing job...",
                                 );
                                 try {
-                                  await axios.post("/api/bookings/complete", {
+                                  await axios.post("https://fixivobeckend.onrender.com/api/bookings/complete", {
                                     bookingId: booking.id,
                                     isForce: true,
                                   });
@@ -855,7 +855,7 @@ export default function AdminDashboard() {
                         "Syncing workers & administrative roles...",
                       );
                       try {
-                        const res = await axios.post("/api/admin/sync-workers");
+                        const res = await axios.post("https://fixivobeckend.onrender.com/api/admin/sync-workers");
                         toast.success(
                           res.data.message || "Database sync complete!",
                           { id: t },
@@ -1824,7 +1824,7 @@ export default function AdminDashboard() {
                                   );
                                   try {
                                     await axios.post(
-                                      "/api/admin/promote-user",
+                                      "https://fixivobeckend.onrender.com/api/admin/promote-user",
                                       {
                                         id: displayId,
                                       },
