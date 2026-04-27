@@ -142,7 +142,7 @@ export default function WorkerRegistration() {
           formData.documents.forEach(file => data.append('documents', file));
         }
         
-        const res = await axios.post('/api/workers/register', data, {
+        const res = await axios.post('https://fixivobeckend.onrender.com/api/workers/register', data, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
         console.log("[Worker Registration] API Success:", res.data);
