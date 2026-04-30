@@ -28,7 +28,7 @@ export default function BookingPage() {
   const { user, profile } = useAuth();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const token = await user.getIdToken();
+  
   
   const [bookingData, setBookingData] = useState({
     serviceType: state?.diagnosis?.category || 'elec',
@@ -62,7 +62,7 @@ export default function BookingPage() {
       navigate('/login');
       return;
     }
-
+    const token = await user.getIdToken();
     if (!bookingData.address || bookingData.address.length < 10) {
       toast.error('Please provide a complete address (min 10 characters)');
       return;
