@@ -89,13 +89,13 @@ export default function LandingPage() {
               <MapPin className="w-4 h-4" />
               Serving Kannur 24/7
             </div>
-            <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-gray-900 dark:text-white leading-[0.85] mb-4">
+            <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-gray-900  leading-[0.85] mb-4">
               Emergency <br />
               <span className="text-yellow-500 drop-shadow-xl">
                 Home Services
               </span>{" "}
               <br />
-              <span className="text-gray-900 dark:text-white">Anytime.</span>
+              <span className="text-gray-900 ">Anytime.</span>
             </h1>
             <p className="mt-8 text-xl text-gray-600 dark:text-gray-300 max-w-lg leading-relaxed font-bold">
               Premium electrical, plumbing, and CCTV services at your doorstep.
