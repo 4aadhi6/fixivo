@@ -28,6 +28,7 @@ export default function BookingPage() {
   const { user, profile } = useAuth();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const token = await user.getIdToken();
   
   const [bookingData, setBookingData] = useState({
     serviceType: state?.diagnosis?.category || 'elec',
@@ -97,7 +98,12 @@ export default function BookingPage() {
       };
 
       console.log('Creating preliminary booking record...');
-      const response = await axios.post('https://fixivobeckend.onrender.com/api/bookings/create', bookingPayload);
+    //  const response = await axios.post('https://fixivobeckend.onrender.com/api/bookings/create', bookingPayload);
+   const response = await axios.post('https://fixivobeckend.onrender.com/api/bookings/create', bookingPayload, {
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+})
       const booking = response.data;
       
       // Fix: Support both id and _id from server
