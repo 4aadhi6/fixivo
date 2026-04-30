@@ -61,8 +61,9 @@ export default function BookingPage() {
       toast.error('Please login to book a service');
       navigate('/login');
       return;
+      const token = await user.getIdToken();
     }
-    const token = await user.getIdToken();
+    
     if (!bookingData.address || bookingData.address.length < 10) {
       toast.error('Please provide a complete address (min 10 characters)');
       return;
