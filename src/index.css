@@ -26,5 +26,5 @@
 .neumorph-inset {
   @apply bg-white shadow-[inset_8px_8px_16px_#d1d1d1,inset_-8px_-8px_16px_#ffffff];
 
-
+}
 
