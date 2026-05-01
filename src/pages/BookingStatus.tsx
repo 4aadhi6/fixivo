@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 import { motion } from "motion/react";
 import {
   Clock,
@@ -26,9 +28,37 @@ import toast from "react-hot-toast";
 export default function BookingStatus() {
   const { id } = useParams();
   const { supportNumber } = useAuth();
+  const invoiceRef = useRef<HTMLDivElement | null>(null);
   const [booking, setBooking] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+const generatePDF = async () => {
+    const input = invoiceRef.current;
+    if (!input) return;
 
+    const canvas = await html2canvas(input, {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: "#ffffff",
+      windowWidth: 900,
+      windowHeight: input.scrollHeight,
+      scrollX: 0,
+      scrollY: 0,
+    });
+
+    const imgData = canvas.toDataURL("image/png");
+
+    const pdf = new jsPDF("p", "mm", "a4");
+
+    const pageWidth = 210;
+    const imgWidth = 190;
+    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+    const x = (pageWidth - imgWidth) / 2;
+
+    pdf.addImage(imgData, "PNG", x, 10, imgWidth, imgHeight);
+
+    pdf.save(`Invoice_${booking?.id}.pdf`);
+  };
   useEffect(() => {
     if (!id) return;
     const unsub = onSnapshot(doc(db, "bookings", id), (docSnap) => {
@@ -39,7 +69,16 @@ export default function BookingStatus() {
     });
     return () => unsub();
   }, [id]);
+ const [pdfGenerated, setPdfGenerated] = useState(false);
 
+  useEffect(() => {
+    if (booking?.status === "completed" && !pdfGenerated) {
+      setTimeout(() => {
+        generatePDF();
+        setPdfGenerated(true);
+      }, 1500);
+    }
+  }, [booking, pdfGenerated]);
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState("");
   const [submittingReview, setSubmittingReview] = useState(false);
@@ -108,6 +147,172 @@ export default function BookingStatus() {
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
+      <style>{`
+.invoice {
+  width: 800px;
+  background: #fff;
+
+
+  /* ✅ THIS IS THE REAL FIX */
+  padding: 30px 28px;
+
+  border-radius: 5px;
+  border: 1px solid #ddd;
+
+  font-family: Arial;
+  font-size: 9px;
+  line-height: 1.4;
+  box-sizing: border-box;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  padding: 2px;
+}
+
+.logo span {
+  color: #f4b400;
+}
+
+.top-info {
+  text-align: right;
+  font-size: 9px;
+  line-height: 1.4;
+  margin: 2px;
+  padding: 2px;
+  white-space: nowrap;
+}
+
+/* DIVIDER */
+.divider {
+  border-bottom: 1px solid #f4b400;
+  margin: 8px 0;
+}
+
+/* TITLE */
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.invoice-box {
+  background: #f4b400;
+  padding: 6px 12px;
+  font-weight: bold;
+  border-radius: 5px;
+  font-size: 10px;
+}
+
+/* SECTION */
+.section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  gap: 10px;
+}
+
+.card {
+  width: 48%;
+}
+
+.card h4 {
+  background: #f4b400;
+  padding: 6px;
+  border-radius: 5px;
+  font-size: 10px;
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  font-size: 9px;
+}
+
+table th {
+  background: #f4b400;
+  padding: 6px;
+  font-size: 9px;
+}
+
+table td {
+  padding: 6px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* TOTALS */
+.totals {
+  text-align: right;
+  margin-top: 8px;
+  font-size: 9px;
+}
+
+.total-box {
+  background: #f4b400;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+/* BOTTOM */
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  gap: 10px;
+}
+
+.payment, .scan {
+  width: 48%;
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.payment h4, .scan h4 {
+  background: #f4b400;
+  padding: 5px;
+  font-size: 10px;
+}
+
+/* QR */
+.qr {
+  width: 100px;
+  height: 100px;
+  background: #eee;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 9px;
+}
+
+/* ADDRESS WRAP FIX */
+.card p {
+  word-wrap: break-word;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+/* REMOVE BORDER TOUCH ISSUE */
+body {
+  margin: 0;
+  padding: 0;
+}
+`}</style>
       <div className="bg-gray-900 pt-32 pb-20 px-6 rounded-b-[3rem]">
         <div className="max-w-4xl mx-auto flex justify-between items-end">
           <div>
@@ -145,6 +350,12 @@ export default function BookingStatus() {
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                 Service Progress
               </h2>
+               <button
+                onClick={generatePDF}
+                className="mt-4 bg-yellow-500 text-white px-6 py-3 rounded-xl font-bold"
+              >
+                Download Invoice
+              </button>
               <p className="text-gray-500 dark:text-gray-400 text-sm mb-8">
                 {booking.status === "confirmed"
                   ? "Searching for the best expert near you..."
@@ -585,6 +796,134 @@ export default function BookingStatus() {
               </p>
             </div>
           )}
+        </div>
+      </div>
+      <div
+        style={{
+          position: "fixed",
+          left: "-9999px",
+          top: 0,
+          width: "900px",
+          background: "#fff",
+          pointerEvents: "none",
+        }}
+      >
+        <div
+          ref={invoiceRef}
+          style={{
+            width: "800px",
+            background: "#fff",
+            padding: "30px",
+            position: "relative",
+          }}
+        >
+          {/* HEADER */}
+          <div className="header">
+            <div className="logo">
+              FIX<span style={{ color: "#f4b400" }}>IVO</span>
+              <br />
+              <small>24/7 Home Services</small>
+            </div>
+
+            <div className="top-info">
+              +91 8129 845 124
+              <br />
+              support@fixora.in
+              <br />
+              www.fixora.in
+              <br />
+              Kochi
+            </div>
+          </div>
+
+          <div className="divider"></div>
+
+          {/* TITLE */}
+          <div className="title">
+            <h2>INVOICE / BILL</h2>
+            <div className="invoice-box">FXR-{booking?.id?.slice(-4)}</div>
+          </div>
+
+          <p>Thank you for choosing Fixora Services</p>
+
+          {/* SECTION */}
+          <div className="section">
+            <div className="card">
+              <h4>Customer Details</h4>
+              <p>Name: {booking?.userName}</p>
+              <p>Phone: {booking?.userPhone}</p>
+              <p>Address: {booking?.address}</p>
+            </div>
+
+            <div className="card">
+              <h4>Service Details</h4>
+              <p>Service: {booking?.serviceType}</p>
+              <p>Issue: {booking?.notes}</p>
+              <p>Technician: {booking?.workerName}</p>
+            </div>
+          </div>
+
+          {/* TABLE */}
+          <table>
+            <thead>
+              <tr>
+                <th>SL NO</th>
+                <th>Description</th>
+                <th>Qty</th>
+                <th>Rate</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Visit Charge</td>
+                <td>1</td>
+                <td>200</td>
+                <td>200</td>
+              </tr>
+
+              <tr>
+                <td>2</td>
+                <td>Service Charge</td>
+                <td>1</td>
+                <td>{booking?.billDetails?.serviceFee}</td>
+                <td>{booking?.billDetails?.serviceFee}</td>
+              </tr>
+
+              {booking?.billDetails?.spareParts?.map((item: any, i: number) => (
+                <tr key={i}>
+                  <td>{i + 3}</td>
+                  <td>{item.name}</td>
+                  <td>1</td>
+                  <td>{item.price}</td>
+                  <td>{item.price}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          {/* TOTALS */}
+          <div className="totals">
+            <p>Subtotal: ₹{booking?.billDetails?.totalBilled}</p>
+
+            <div className="total-box">
+              Total: ₹{(booking?.billDetails?.totalBilled || 0) + 200}
+            </div>
+          </div>
+
+          {/* BOTTOM */}
+          <div className="bottom">
+            <div className="payment">
+              <h4>Payment Details</h4>
+              <p>Mode: {booking?.billDetails?.paymentMode}</p>
+              <p>Status: Paid</p>
+            </div>
+          </div>
+
+          {/* FOOTER */}
+          <div className="footer">Thank you for choosing Fixora Services</div>
         </div>
       </div>
     </div>
