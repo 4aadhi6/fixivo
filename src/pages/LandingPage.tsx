@@ -385,6 +385,10 @@ export default function LandingPage() {
               <li className="flex items-center gap-3 text-yellow-400 font-black">
                 UPI ID: rumijabir12@oksbi
               </li>
+              <li className="flex items-center gap-3">
+                <Mail className="w-5 h-5 text-yellow-400" />
+                support@fixivo.com
+              </li>
             </ul>
           </div>
         </div>
