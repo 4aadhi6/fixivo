@@ -57,9 +57,9 @@ export const Navbar = () => {
           <Link to="/workers" className="hover:text-yellow-500 transition-colors">Our Experts</Link>
           <Link to="/diagnosis" className="hover:text-yellow-500 transition-colors">Book Now</Link>
           
-          <button onClick={toggleDark} className="p-2 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-yellow-400 hover:scale-110 transition-all">
+          {/* <button onClick={toggleDark} className="p-2 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-yellow-400 hover:scale-110 transition-all">
             {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-          </button>
+          </button> */}
 
           {user ? (
             <div className="flex items-center gap-6">
