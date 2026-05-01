@@ -53,7 +53,7 @@ export const LogoLoader = () => {
         transition={{ delay: 0.3 }}
         className="text-center mt-12"
       >
-        <h1 className="text-4xl font-black tracking-tighter text-gray-900 mb-2">FIXIVO</h1>
+        {/* <h1 className="text-4xl font-black tracking-tighter text-gray-900 mb-2">FIXIVO</h1> */}
         <div className="flex items-center justify-center gap-2 mb-4">
           {[0, 1, 2].map((i) => (
             <motion.div
