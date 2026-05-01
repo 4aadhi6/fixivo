@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useRef} from "react";
 import { useParams, Link } from "react-router-dom";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
