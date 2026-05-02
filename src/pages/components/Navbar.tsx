@@ -44,12 +44,15 @@ export const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-2">
           <img 
-            src="https://res.cloudinary.com/dfkw8x3yf/image/upload/v1777212345/file_000000000b8871faac52c877019d5db2_ilkihv.png" 
+            src="https://res.cloudinary.com/dfkw8x3yf/image/upload/v1777702682/5b05aec3-e8de-40e8-82a3-9895b8a9b0e7_b9jiht.jpg" 
             alt="Fixivo Logo" 
             className="w-20 h-20 md:w-24 md:h-24 object-contain transition-transform hover:scale-105"
             referrerPolicy="no-referrer"
           />
-          <span className="text-3xl font-black tracking-tighter text-gray-900 dark:text-white">FIXIVO</span>
+         <span className="text-3xl font-black tracking-tighter text-gray-900 dark:text-white">
+            <span className="text-black opacity-75">FIX</span>
+            <span className="text-yellow-500">IVO</span>
+          </span>
         </Link>
 
         {/* Desktop Menu */}
