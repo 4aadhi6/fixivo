@@ -99,8 +99,8 @@ export default function LandingPage() {
               <span className="text-gray-900 ">Anytime.</span>
             </h1>
             <p className="mt-8 text-xl text-gray-600 dark:text-gray-300 max-w-lg leading-relaxed font-bold">
-              Premium electrical, plumbing, and CCTV services at your doorstep.
-              Professional workers, transparent ₹99 booking fee.
+             Fixivo brings trusted home services with skilled professionals —
+              made simple, made reliable
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
               <Link
