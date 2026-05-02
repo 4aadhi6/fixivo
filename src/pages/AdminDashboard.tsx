@@ -1734,10 +1734,10 @@ export default function AdminDashboard() {
                   const t = toast.loading("Reading registration database...");
                   try {
                     const res = await axios.get("/api/admin/all-users");
-                 (window as any).systemUsersList = res.data.data;
+                 (window as any).systemUsersList = res.data.data || [];
                     toast.success(
                     toast.success(
-                      `Found ${res.data.length} registered profiles!`,
+                     `Found ${res.data.data?.length || 0} registered profiles!`,
                       { id: t },
                     );
                     setActiveTab("system");
