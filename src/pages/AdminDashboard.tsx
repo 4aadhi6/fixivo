@@ -1729,29 +1729,31 @@ export default function AdminDashboard() {
                   Manually repair database links for expert partners
                 </p>
               </div>
-              <button
-                onClick={async () => {
-                  const t = toast.loading("Reading registration database...");
-                  try {
-                    const res = await axios.get("/api/admin/all-users");
-                 (window as any).systemUsersList = res.data.data || [];
-                    toast.success(
-                    toast.success(
-                     `Found ${res.data.data?.length || 0} registered profiles!`,
-                      { id: t },
-                    );
-                    setActiveTab("system");
-                  } catch (e) {
-                    toast.error("Could not connect to system database.", {
-                      id: t,
-                    });
-                  }
-                }}
-                className="bg-gray-900 text-white px-6 py-3 rounded-2xl flex items-center gap-2 font-bold text-sm hover:scale-105 transition-all shadow-xl shadow-gray-200"
-              >
-                <RefreshCw className="w-4 h-4" />
-                Initialize System List
-              </button>
+             <button
+  onClick={async () => {
+    const t = toast.loading("Reading registration database...");
+    try {
+      const res = await axios.get("/api/admin/all-users");
+
+      (window as any).systemUsersList = res.data.data || [];
+
+      toast.success(
+        `Found ${res.data.data?.length || 0} registered profiles!`,
+        { id: t },
+      );
+
+      setActiveTab("system");
+    } catch (e) {
+      toast.error("Could not connect to system database.", {
+        id: t,
+      });
+    }
+  }}
+  className="bg-gray-900 text-white px-6 py-3 rounded-2xl flex items-center gap-2 font-bold text-sm hover:scale-105 transition-all shadow-xl shadow-gray-200"
+>
+  <RefreshCw className="w-4 h-4" />
+  Initialize System List
+</button>
             </div>
 
             <div className="space-y-6">
