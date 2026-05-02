@@ -54,6 +54,7 @@ export const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8 font-bold text-gray-800">
+          <Link to="/" className="hover:text-yellow-500 transition-colors">Home</Link>
           <Link to="/workers" className="hover:text-yellow-500 transition-colors">Our Experts</Link>
           <Link to="/diagnosis" className="hover:text-yellow-500 transition-colors">Book Now</Link>
           
