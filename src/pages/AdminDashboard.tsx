@@ -351,9 +351,10 @@ export default function AdminDashboard() {
               className="w-8 h-8 rounded-lg object-contain shadow-sm"
             />
             <div className="flex flex-col">
-              <span className="text-xl font-black tracking-tighter leading-tight text-gray-900 dark:text-white">
-                FIXIVO
-              </span>
+               <span className="text-3xl font-black tracking-tighter text-gray-900 dark:text-white">
+            <span className="text-white opacity-85">FIX</span>
+            <span className="text-yellow-500">IVO</span>
+          </span>
               <span className="text-[8px] font-black uppercase text-yellow-500 tracking-[0.2em]">
                 ADMIN PORTAL
               </span>
