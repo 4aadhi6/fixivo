@@ -1471,7 +1471,7 @@ body {
           )}
 
           {/* Service Details */}
-          <div className="neumorph p-8 rounded-3xl">
+          <div className="neumorph p-8 rounded-3xl text-white">
             <h3 className="text-xl font-bold mb-6">Service Details</h3>
             <div className="grid grid-cols-2 gap-8 mb-6">
               <div className="flex items-start gap-4">
@@ -1482,7 +1482,7 @@ body {
                   <p className="text-sm text-gray-500 font-bold uppercase tracking-wider">
                     Service
                   </p>
-                  <p className="font-bold text-gray-900 dark:text-white">
+                  <p className="font-bold text-gray-900 text-white">
                     {booking.serviceType.toUpperCase()}
                   </p>
                 </div>
@@ -1513,7 +1513,7 @@ body {
 
             {booking.billDetails?.workSummary && (
               <div className="bg-green-50 dark:bg-green-900/10 p-4 rounded-xl border border-green-100 dark:border-green-900/30 font-bold text-green-700 dark:text-green-400">
-                <p className="text-[10px] font-black uppercase tracking-widest mb-1 opacity-50">
+                <p className="text-[10px] text-white uppercase tracking-widest mb-1 opacity-50">
                   Expert's Fix Summary
                 </p>
                 {booking.billDetails.workSummary}
@@ -1534,7 +1534,7 @@ body {
               </h3>
 
               <div className="space-y-4 mb-6">
-                <div className="flex justify-between items-center text-sm">
+                <div className="flex justify-between items-center text-sm text-white">
                   <span className="text-gray-500">Service/Labor Fee</span>
                   <span className="font-bold">
                     ₹{booking.billDetails.serviceFee}
@@ -1544,7 +1544,7 @@ body {
                 {booking.billDetails.spareParts?.map((part: any, i: number) => (
                   <div
                     key={i}
-                    className="flex justify-between items-center text-sm"
+                    className="flex justify-between items-center text-sm text-white"
                   >
                     <span className="text-gray-500">{part.name}</span>
                     <span className="font-bold">₹{part.price}</span>
@@ -1659,7 +1659,7 @@ body {
 
           {/* Worker Card (If assigned) */}
           {booking.workerId ? (
-            <div className="neumorph p-8 rounded-3xl">
+            <div className="neumorph p-8 rounded-3xl text-white">
               <h3 className="text-lg font-bold mb-6 text-gray-900">
                 Assigned Expert
               </h3>
