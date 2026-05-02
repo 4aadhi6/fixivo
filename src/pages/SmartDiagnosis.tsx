@@ -126,7 +126,7 @@ export default function SmartDiagnosis() {
               exit={{ x: -20, opacity: 0 }}
               className="flex-1"
             >
-              <h2 className="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+              <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
                 <HelpCircle className="w-6 h-6 text-yellow-500" />
                 {currentStep?.question}
               </h2>
