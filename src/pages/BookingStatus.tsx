@@ -995,14 +995,28 @@ export default function BookingStatus() {
   }, [id]);
   const [pdfGenerated, setPdfGenerated] = useState(false);
 
-  useEffect(() => {
-    if (booking?.status === "completed" && !pdfGenerated) {
-      setTimeout(() => {
-        generatePDF();
-        setPdfGenerated(true);
-      }, 1500);
+  // useEffect(() => {
+  //   if (booking?.status === "completed" && !pdfGenerated) {
+  //     setTimeout(() => {
+  //       generatePDF();
+  //       setPdfGenerated(true);
+  //     }, 1500);
+  //   }
+  // }, [booking, pdfGenerated]);
+   useEffect(() => {
+    if (booking?.status === "completed") {
+      const key = `invoice_${booking._id}`; // unique per booking
+
+      const alreadyDownloaded = localStorage.getItem(key);
+
+      if (!alreadyDownloaded) {
+        setTimeout(() => {
+          generatePDF();
+          localStorage.setItem(key, "done"); // mark as downloaded
+        }, 1500);
+      }
     }
-  }, [booking, pdfGenerated]);
+  }, [booking]);
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState("");
   const [submittingReview, setSubmittingReview] = useState(false);
