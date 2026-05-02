@@ -1,4 +1,10 @@
 @import "tailwindcss";
+@supports (color: oklch(0 0 0)) {
+  :root {
+    --tw-color-format: rgb;
+  }
+}
+@
 
 @theme {
   --color-primary: #ffd700;
@@ -27,4 +33,13 @@
   @apply bg-white shadow-[inset_8px_8px_16px_#d1d1d1,inset_-8px_-8px_16px_#ffffff];
 
 }
+.invoice {
+  font-family: Arial, sans-serif;
+}
+
+.invoice * {
+  color: #000 !important;
+  background-color: #fff !important;
+}
+
 
