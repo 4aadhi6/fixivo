@@ -187,21 +187,20 @@ export default function LandingPage() {
               <motion.div
                 key={service.id}
                 whileHover={{ y: -10 }}
-                className="neumorph p-12 rounded-[3.5rem] text-left group transition-all duration-500 hover:bg-gray-900 dark:hover:bg-yellow-400 cursor-pointer relative overflow-hidden"
-              >
+                className="neumorph p-12 rounded-[3.5rem] text-left group transition-all duration-500 cursor-pointer relative overflow-hidden hover:bg-gray-900 hover:shadow-2xl"
                 <div
                   className={`${service.bg} w-20 h-20 rounded-2xl flex items-center justify-center mb-10 border border-white/50 shadow-inner group-hover:scale-110 transition-transform`}
                 >
                   <service.icon className={`w-10 h-10 ${service.color}`} />
                 </div>
-                <h3 className="text-4xl font-black text-gray-900 dark:text-white group-hover:text-yellow-400 dark:group-hover:text-gray-900 mb-6 tracking-tight transition-colors">
+                <h3 className="text-4xl font-black text-gray-900 group-hover:text-yellow-400 mb-6 tracking-tight transition-colors">
                   {service.name}
                 </h3>
-                <p className="text-gray-800 dark:text-gray-200 group-hover:text-white dark:group-hover:text-gray-900 font-bold leading-relaxed transition-colors mb-8 text-lg">
+               <p className="text-gray-800 group-hover:text-gray-200 font-bold leading-relaxed transition-colors mb-8 text-lg">
                   Professional {service.name.toLowerCase()} solutions for your
                   home. Ready for 24/7 emergency response.
                 </p>
-                <div className="flex items-center gap-2 text-yellow-600 dark:text-yellow-500 font-black uppercase text-sm tracking-widest group-hover:text-yellow-400 dark:group-hover:text-gray-900 transition-colors">
+                <div className="flex items-center gap-2 text-yellow-600 font-black uppercase text-sm tracking-widest group-hover:text-yellow-400 transition-colors">
                   Get Started
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                 </div>
