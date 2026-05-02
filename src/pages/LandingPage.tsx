@@ -187,7 +187,7 @@ export default function LandingPage() {
               <motion.div
                 key={service.id}
                 whileHover={{ y: -10 }}
-                className="neumorph p-12 rounded-[3.5rem] text-left group transition-all duration-500 cursor-pointer relative overflow-hidden hover:bg-gray-900 hover:shadow-2xl"
+                className="neumorph p-12 rounded-[3.5rem] text-left group transition-all duration-500 cursor-pointer relative overflow-hidden hover:bg-gray-900 hover:shadow-2xl">
                 <div
                   className={`${service.bg} w-20 h-20 rounded-2xl flex items-center justify-center mb-10 border border-white/50 shadow-inner group-hover:scale-110 transition-transform`}
                 >
