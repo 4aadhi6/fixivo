@@ -1734,7 +1734,7 @@ export default function AdminDashboard() {
                   const t = toast.loading("Reading registration database...");
                   try {
                     const res = await axios.get("/api/admin/all-users");
-                  (window as any).systemUsersList = res.data.data;
+                 (window as any).systemUsersList = res.data.data || [];
                     toast.success(
                     toast.success(
                       `Found ${res.data.length} registered profiles!`,
@@ -1783,7 +1783,10 @@ export default function AdminDashboard() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-50">
-                    {((window as any).systemUsersList || []).map(
+                    {(Array.isArray((window as any).systemUsersList)
+                      ? (window as any).systemUsersList
+                      : []
+                    ).map(
                       (u: any, idx: number) => {
                         const displayId = u.id || u.uid || u.firebaseId;
                         return (
