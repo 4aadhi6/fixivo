@@ -1512,7 +1512,7 @@ body {
             )}
 
             {booking.billDetails?.workSummary && (
-              <div className="bg-green-50 dark:bg-green-900/10 p-4 rounded-xl border border-green-100 dark:border-green-900/30 font-bold text-green-700 dark:text-green-400">
+              <div className="bg-green-50 dark:bg-green-900/10 p-4 rounded-xl border border-green-100 dark:border-green-900/30 font-bold text-green-700 dark:text-green-400  text-white">
                 <p className="text-[10px] text-white uppercase tracking-widest mb-1 opacity-50">
                   Expert's Fix Summary
                 </p>
