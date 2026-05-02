@@ -66,7 +66,8 @@ export default function WorkersPage() {
         {/* Header */}
         <div className="mb-12 text-left">
           <h1 className="text-5xl font-black tracking-tighter text-gray-900 dark:text-white mb-4 uppercase">
-            Fixivo Experts
+            <span className="text-black opacity-75">FIX</span>
+            <span className="text-yellow-500">IVO</span> <span className="text-black">EXPERTS</span>
           </h1>
           <p className="text-gray-500 dark:text-gray-400 font-medium max-w-2xl">
             Meet our certified professionals in Kannur. Every expert undergoes a
