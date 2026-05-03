@@ -1853,7 +1853,9 @@ body {
               <p>Service: {booking?.serviceType}</p>
               <p>Issue: {booking?.notes}</p>
               <p>Technician: {booking?.workerName}</p>
-              <p>Technician ID :{booking?.workerId} </p>
+            <p>Technician ID: FXW-
+                {booking?.workerId?.slice(-4)?.toUpperCase()}{" "}
+              </p>
             </div>
           </div>
 
