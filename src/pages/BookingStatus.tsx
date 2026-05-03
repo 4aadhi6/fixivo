@@ -1843,6 +1843,12 @@ body {
           <div className="section">
             <div className="card">
               <h4>Customer Details</h4>
+              <p>
+  User ID:{" "}
+  {booking?.userId
+    ? `FXU-${booking.userId.slice(-4).toUpperCase()}`
+    : "N/A"}
+</p>
               <p>Name: {booking?.userName}</p>
               <p>Phone: {booking?.userPhone}</p>
               <p>Address: {booking?.address}</p>
