@@ -1528,8 +1528,8 @@ body {
               animate={{ opacity: 1, y: 0 }}
               className="neumorph p-8 rounded-3xl"
             >
-              <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                <CreditCard className="w-5 h-5 text-green-500" />
+              <h3 className="text-xl text-white font-bold mb-6 flex items-center gap-2">
+                <CreditCard className="w-5 h-5" />
                 Final Bill Summary
               </h3>
 
@@ -1830,7 +1830,7 @@ body {
 
               {/* 🔥 NEW: Booking ID + Date */}
               <p style={{ fontSize: "9px", marginTop: "4px" }}>
-                Booking ID: {booking?.id}
+                Booking ID:  FXO-{booking?.id?.slice(-4)?.toUpperCase()
               </p>
               <p style={{ fontSize: "13px" }}>
                 Date: {new Date().toLocaleDateString("en-IN")}
