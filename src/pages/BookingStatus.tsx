@@ -1529,7 +1529,7 @@ body {
               className="neumorph p-8 rounded-3xl"
             >
  
-  <h3 className=" font-bold mb-6 flex items-center gap-2">
+  <h3 className=" text-white mb-6 flex items-center gap-2">
     <CreditCard className="w-5 h-5" />
     Final Bill Summary
   </h3>
