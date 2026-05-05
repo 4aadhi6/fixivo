@@ -1528,8 +1528,8 @@ body {
               animate={{ opacity: 1, y: 0 }}
               className="neumorph p-8 rounded-3xl"
             >
- 
-  <h3 className=" text-white mb-6 flex items-center gap-2">
+<div className="text-white">
+  <h3 className="mb-6 flex items-center gap-2">
     <CreditCard className="w-5 h-5" />
     Final Bill Summary
   </h3>
@@ -1552,7 +1552,7 @@ body {
                   </div>
                 ))}
               </div>
-
+</div> 
               <div className="pt-4 border-t border-gray-100 dark:border-gray-800 flex justify-between items-center">
                 <div>
                   <p className="text-xl font-black text-gray-900 dark:text-white">
