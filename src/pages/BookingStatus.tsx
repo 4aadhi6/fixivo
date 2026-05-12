@@ -1831,7 +1831,7 @@ body {
 
               {/* 🔥 NEW: Booking ID + Date */}
               <p style={{ fontSize: "9px", marginTop: "4px" }}>
-                Booking ID:  FXO-{booking?.id?.slice(-4)?.toUpperCase()
+                Booking ID:  FXO-{booking?.id?.slice(-4)?.toUpperCase()}
               </p>
               <p style={{ fontSize: "13px" }}>
                 Date: {new Date().toLocaleDateString("en-IN")}
